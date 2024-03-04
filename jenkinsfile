@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clonar Repositorio') {
+            steps {
+                git branch: 'master', credentialsId: 'ID_CREDENCIALES_DEV', url: 'URL_REPO_DEV'
+            }
+        }
+        stage('Transferir Archivo') {
+            steps {
+                sh 'cp ruta/al/archivo.yml ruta/destino/archivo.yml'
+                git branch: 'master', credentialsId: 'ID_CREDENCIALES_PROD', url: 'URL_REPO_PROD'
+            }
+        }
+    }
+}
